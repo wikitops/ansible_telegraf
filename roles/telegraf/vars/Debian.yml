@@ -1,0 +1,7 @@
+---
+
+###
+# DEBIAN
+###
+
+telegraf_package_name: telegraf={{ telegraf_version }}*

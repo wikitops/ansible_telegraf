@@ -1,0 +1,19 @@
+---
+
+###
+# TELEGRAF
+###
+
+# Version
+telegraf_version: 1.12.4
+
+# Extra plugins
+# telegraf_plugins_extra:
+#   - filename: chanegme
+#     state: present
+
+###
+# INFLUXDB
+###
+
+telegraf_influxdb_url: "http://127.0.0.1:8086"

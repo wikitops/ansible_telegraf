@@ -1,0 +1,26 @@
+---
+
+- name: TELEGRAF PLUGINS | Copy extra plugins
+  template:
+    src: etc/telegraf/telegraf.d/{{ item.filename }}.conf.j2
+    dest: /etc/telegraf/telegraf.d/{{ item.filename }}.conf
+    owner: telegraf
+    group: telegraf
+    mode: 0640
+  loop: "{{ telegraf_plugins_extra.filename }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - item.state|default('present') != 'absent'
+  notify:
+    - Restart telegraf
+
+- name: TELEGRAF PLUGINS | Remove extra plugins
+  file:
+    path: /etc/telegraf/telegraf.d/{{ item.filename }}.conf
+    state: absent
+  loop: "{{ telegraf_plugins_extra.filename }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - item.state|default('present') == 'absent'
+  notify:
+    - Restart telegraf

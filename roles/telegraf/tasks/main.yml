@@ -1,0 +1,23 @@
+---
+
+- name: TELEGRAF | Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: TELEGRAF | Installation
+  package:
+    name: "{{ telegraf_package_name }}"
+    update_cache: yes
+    state: present
+  notify: Restart telegraf
+
+- name: TELEGRAF | Configuration
+  template:
+    src: etc/telegraf/telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart telegraf
+
+- name: TELEGRAF | Manage plugins
+  import_tasks: plugins.yml

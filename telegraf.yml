@@ -1,0 +1,7 @@
+---
+
+- hosts: telegraf
+  remote_user: vagrant
+  become: yes
+  roles:
+    - telegraf

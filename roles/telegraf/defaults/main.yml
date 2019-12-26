@@ -5,7 +5,7 @@
 ###
 
 # Version
-telegraf_version: 1.12.4
+telegraf_version: 1.13.0
 
 # Extra plugins
 # telegraf_plugins_extra:
